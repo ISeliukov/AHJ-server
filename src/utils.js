@@ -20,7 +20,10 @@ function parseTicket(body) {
   }
 
   for (const key of ticketKeys) {
-    if (!(key in body) || typeof body[key] !== 'string' || body[key].length === 0) {
+//	console.log('SERVER  ===key ',key,'  ===body',body,'  ===',!(key in body),'  ',(typeof body[key]),'  ',body[key].length);
+//    console.log('SERVER  ===key ',key,' ===',(typeof key),'  ===',(body.hasOwnProperty(key)),'  ===',!(key in body),'  ===',body);
+    if (!(body.hasOwnProperty(key)) || (typeof body[key] !== 'string') || (body[key].length === 0)) {
+//	  console.log('SERVER  ===key ',key,'  ===body',body,'  ===',(body.hasOwnProperty(key)),'  ',(typeof body[key]),'  ',body[key].length);
       throw new HttpError(400, `Property "${key}" is not provided`);
     }
   }
